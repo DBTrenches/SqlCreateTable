@@ -1,0 +1,17 @@
+. $PSScriptRoot\functions\Get-SqlKeyWords.ps1
+. $PSScriptRoot\functions\Get-SqlQuoteNameSparse.ps1
+. $PSScriptRoot\functions\Get-SqlTable.ps1
+. $PSScriptRoot\functions\Get-SqlBoundDefaults.ps1
+. $PSScriptRoot\functions\Get-SqlChecks.ps1
+. $PSScriptRoot\functions\Get-SqlColumns.ps1
+. $PSScriptRoot\functions\Get-SqlForeignKeys.ps1
+. $PSScriptRoot\functions\Get-SqlFkColumns.ps1
+. $PSScriptRoot\functions\Get-SqlIndexes.ps1
+. $PSScriptRoot\functions\Get-SqlIndexColumns.ps1
+. $PSScriptRoot\functions\Get-SqlKeyConstraints.ps1
+. $PSScriptRoot\functions\Format-SqlCheckConstraint.ps1
+. $PSScriptRoot\functions\Format-SqlForeignKey.ps1
+. $PSScriptRoot\functions\Format-SqlIndex.ps1
+. $PSScriptRoot\functions\Format-SqlKeyConstraint.ps1
+. $PSScriptRoot\functions\Format-SqlTableColumn.ps1
+. $PSScriptRoot\functions\Get-SqlCreateTable.ps1

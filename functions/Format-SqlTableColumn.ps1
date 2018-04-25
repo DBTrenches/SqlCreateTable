@@ -1,0 +1,3 @@
+function Format-SqlTableColumn {
+    $Columns
+}
