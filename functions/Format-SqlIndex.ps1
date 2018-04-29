@@ -28,7 +28,9 @@ function Format-SqlIndex {
     $createIndexCommand = ""
     $createIndexCommand += "create $UNIQUE_OR_NOT$($CLUSTERED_OR_NOT)index $i $_NL$($_TB)on $s.$t ( "
     $createIndexCommand += "$keyCols )"
-    $createIndexCommand += "$includeBlock;$($_NL)go$_NL"
+    $createIndexCommand += "$includeBlock"
+    if($Index.has_filter){$createIndexCommand += "$($_NL)where $($Index.filter_definition)"}
+    $createIndexCommand += ";$($_NL)go$_NL"
 
     [PSCustomObject]@{
         CreateIndexCommand = $createIndexCommand
