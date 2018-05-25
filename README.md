@@ -1,6 +1,6 @@
 # SqlCreateTable
 
-SMO Create-Table output was too bulky & I'm a delicate flower, so I wrote this to satisfy my Golidlocks-level pickiness. Pipes out prettified `CREATE` object syntax for SQL tables & dependent objects.
+SMO is super bulky. For a leaner `CREATE` table syntax, use this. Designed with future customization in mind. 
 
 `Install-Module .\SqlCreateTable`
 
