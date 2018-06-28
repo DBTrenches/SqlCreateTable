@@ -1,4 +1,9 @@
 function Get-SqlKeyConstraints {
+<#
+.EXAMPLE
+    $id = (Invoke-SqlCmd -server "." -database "tempdb" -Query "select object_id('F394243C.Parent') as id").id
+    Get-SqlKeyConstraints -server "." -database "tempdb" -tableId $id
+#>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
             [Alias('serverName','sqlServer','server')]
