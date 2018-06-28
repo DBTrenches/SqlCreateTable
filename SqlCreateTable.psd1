@@ -5,7 +5,7 @@
     RootModule        = 'SqlCreateTable.psm1'
     ModuleVersion     = '0.0.1'
     Author            = 'Peter Vandivier'
-    RequiredModules   = @('SQLPS')
+    RequiredModules   = @('SqlServer')
     FunctionsToExport = @(
         'Get-SqlKeyWords'
         'Get-SqlQuoteNameSparse'
