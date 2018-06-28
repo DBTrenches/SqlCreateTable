@@ -1,4 +1,6 @@
-﻿$setup = gc $PSScriptRoot\sql\setup.sql   -Raw
+﻿Import-Module $PSScriptRoot\..\..\SqlCreateTable -Force
+
+$setup = gc $PSScriptRoot\sql\setup.sql   -Raw
 $clean = gc $PSScriptRoot\sql\cleanup.sql -Raw
 
 $env = @{
