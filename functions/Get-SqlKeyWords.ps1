@@ -23,7 +23,7 @@ function Get-SqlKeyWords {
 #>
     [string[]]$keywords=@(
         "abort", "abs", "absolute", "acos", "action", "add", "admin", "after"
-        "aggregate", "all", "alter", "and", "any", "as", "asc", "ascii", "asin"
+        "aggregate", "all", "alter", "and", "any", "application", "as", "asc", "ascii", "asin"
         "assemblyproperty", "asymkeyproperty", "asymmetric", "at", "atan", "atomic"
         "authorization", "avg", "backup", "before", "begin", "between", "bigint"
         "binary", "bit", "break", "browse", "bulk", "by", "call", "cascade", "case"
