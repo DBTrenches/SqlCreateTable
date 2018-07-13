@@ -4,6 +4,7 @@ skip_commits:
 
 install:
   - cinst pester
+  - ps: Install-Module SqlServer
 
 build: off
 
