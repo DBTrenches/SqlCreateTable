@@ -4,7 +4,6 @@ skip_commits:
 
 install:
   - cinst pester
-  - ps: Import-Module SqlCreateTable
 
 build: off
 
