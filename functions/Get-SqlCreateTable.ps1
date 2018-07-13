@@ -57,14 +57,14 @@ function Get-SqlCreateTable {
             2. retrieves the identifier for master..spt_monitor
             3. Extracts the "CREATE TABLE ..." script and...
               b. Pipes it to a file
-            4. Opens the file in notepad
+            4. Opens the file in vscode
 
             $connStr=@{server="."
                 database="master"}
             $tbl = (Get-SqlTable @connStr -table spt_monitor).table_id
             (Get-SqlCreateTable @connStr $tbl).CreateTableCommand `
             | Out-File .\spt_values.sql -encoding ascii
-            notepad .\spt_values.sql
+            code .\spt_values.sql
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]

@@ -10,9 +10,14 @@ function Format-SqlIndex {
     $t = $Index.table_name
     $i = $Index.index_name
 
-    if($Index.type -eq 1){
-        $CLUSTERED_OR_NOT = "clustered "
+    $CLUSTERED_OR_NOT = switch($Index.type){
+        1 {"clustered "}
+        5 {"clustered columnstore "}
+        6 {"columnstore "}
     }
+    
+    $is_columnstore = $Index.type -in (5,6)
+
     if($Index.is_unique){
         $UNIQUE_OR_NOT = "unique "
     }
@@ -26,9 +31,11 @@ function Format-SqlIndex {
     }
 
     $createIndexCommand = ""
-    $createIndexCommand += "create $UNIQUE_OR_NOT$($CLUSTERED_OR_NOT)index $i $_NL$($_TB)on $s.$t ( "
-    $createIndexCommand += "$keyCols )"
-    $createIndexCommand += "$includeBlock"
+    $createIndexCommand += "create $UNIQUE_OR_NOT$($CLUSTERED_OR_NOT)index $i $_NL    on $s.$t "
+    if(-not $is_columnstore){
+        $createIndexCommand += "( $keyCols )"
+        $createIndexCommand += "$includeBlock"
+    }
     if($Index.has_filter){$createIndexCommand += "$($_NL)where $($Index.filter_definition)"}
     $createIndexCommand += ";$($_NL)go$_NL"
 

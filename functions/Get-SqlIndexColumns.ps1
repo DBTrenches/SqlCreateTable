@@ -59,7 +59,7 @@ where ic.[object_id] = $objectId
             key_ordinal        = $PSItem.key_ordinal
             partition_ordinal  = $PSItem.partition_ordinal
             is_descending_key  = $PSItem.is_descending_key
-            is_included_column = $PSItem.is_included_column            
+            is_included_column = $PSItem.is_included_column
         } 
     }
 #endregion
