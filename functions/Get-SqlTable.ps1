@@ -74,6 +74,7 @@ select
     ,pk.pk_id
     ,pk.unique_index_id
     ,is_pk_clustered = convert(bit,iif(pk.[type]=1,1,0))
+    ,t.lob_data_space_id -- do stuff if not 0 (zero) or default FG/DS
 from sys.tables t
 join sys.schemas s on s.[schema_id] = t.[schema_id]
 outer apply (
