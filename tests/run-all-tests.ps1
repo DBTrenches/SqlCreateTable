@@ -1,7 +1,7 @@
 ﻿Import-Module $PSScriptRoot\..\..\SqlCreateTable -Force
 
-$setup = gc $PSScriptRoot\sql\setup.sql   -Raw
-$clean = gc $PSScriptRoot\sql\cleanup.sql -Raw
+$setup = Get-Content $PSScriptRoot\sql\setup.sql   -Raw
+$clean = Get-Content $PSScriptRoot\sql\cleanup.sql -Raw
 
 $env = @{
     ServerInstance = "localhost"
