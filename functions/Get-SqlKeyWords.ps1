@@ -22,7 +22,7 @@ function Get-SqlKeyWords {
 
 #>
     [string[]]$keywords=@(
-        "abort", "abs", "absolute", "acos", "action", "add", "admin", "after"
+        "abort", "abs", "absolute", "acos", "action", "add", "address", "admin", "after"
         "aggregate", "all", "alter", "and", "any", "application", "as", "asc", "ascii", "asin"
         "assemblyproperty", "asymkeyproperty", "asymmetric", "at", "atan", "atomic"
         "authorization", "avg", "backup", "before", "begin", "between", "bigint"
@@ -42,7 +42,7 @@ function Get-SqlKeyWords {
         "decryptbypassphrase", "default", "degrees", "delete", "deny", "desc"
         "difference", "disk", "distinct", "distributed", "double", "drop", "dump"
         "dynamic", "else", "encryptbyasymkey", "encryptbycert", "encryptbykey"
-        "encryptbypassphrase", "end", "eomonth", "errlvl", "escape", "eventdata", "except"
+        "encryptbypassphrase", "end", "eomonth", "errlvl", "escape", "event", "eventdata", "except"
         "exec", "execute", "exists", "exit", "exp", "external", "extract", "fetch"
         "file", "filegroupproperty", "fileproperty", "fillfactor", "filter"
         "first", "float", "floor", "following", "for", "foreign", "format"
