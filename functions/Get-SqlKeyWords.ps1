@@ -56,7 +56,7 @@ function Get-SqlKeyWords {
         "isnumeric", "isolation", "iterate", "join", "key", "kill", "language", "last"
         "left", "len", "level", "like", "lineno", "load", "local", "log", "lower"
         "ltrim", "match", "max", "merge", "min", "minute", "mod", "modify", "money"
-        "month", "monthname", "move", "national", "nchar", "newid", "newsequentialid"
+        "month", "monthname", "move", "name", "national", "nchar", "newid", "newsequentialid"
         "next", "no", "nocheck", "nonclustered", "none", "normalize", "not"
         "ntext", "ntile", "null", "nullif", "numeric", "nvarchar", "object"
         "objectproperty", "objectpropertyex", "of", "off", "offsets", "on", "online", "open"
