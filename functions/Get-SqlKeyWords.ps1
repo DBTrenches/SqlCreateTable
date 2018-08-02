@@ -76,7 +76,7 @@ function Get-SqlKeyWords {
         "serverproperty", "session", "sessionproperty", "set", "sets", "setuser", "shutdown"
         "sign", "signbyasymkey", "signbycert", "sin", "smalldatetime"
         "smalldatetimefromparts", "smallint", "smallmoney", "some", "soundex", "space", "sql"
-        "sqrt", "square", "start", "state", "statement", "static", "statistics"
+        "sqrt", "square", "start", "state", "statement", "static", "statistics", "status",
         "stdev", "stdevp", "str", "stuff", "substring", "sum", "switchoffset"
         "symkeyproperty", "symmetric", "sysdatetime", "sysdatetimeoffset", "system"
         "sysutcdatetime", "table", "tablesample", "tan", "text", "textptr", "textsize"
