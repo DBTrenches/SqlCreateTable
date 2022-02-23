@@ -5,13 +5,13 @@ function Get-SqlKeyConstraints {
     Get-SqlKeyConstraints -server "." -database "tempdb" -tableId $id
 #>
     [CmdletBinding()]Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
             [Alias('serverName','sqlServer','server')]
             [string]$serverInstance
-       ,[Parameter(Mandatory=$true)]
+       ,[Parameter(Mandatory)]
             [Alias('database','dbName')]
             [string]$databaseName
-	   ,[Parameter(Mandatory=$true)]
+	   ,[Parameter(Mandatory)]
 			[Alias('parent_object_id','parent_id','parentId','table_id')]   
 	  		[Int32]$tableId
     )

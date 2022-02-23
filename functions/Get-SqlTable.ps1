@@ -11,10 +11,10 @@ function Get-SqlTable {
 
 #>
     [CmdletBinding()]Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
             [Alias('serverName','sqlServer','server')]
             [string]$serverInstance
-       ,[Parameter(Mandatory=$true)]
+       ,[Parameter(Mandatory)]
             [Alias('database','dbName')]
             [string]$databaseName
        ,[Parameter()][Int32]$objectId = $null

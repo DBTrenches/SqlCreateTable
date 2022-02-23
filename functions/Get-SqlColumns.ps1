@@ -19,13 +19,13 @@ function Get-SqlColumns {
 			Get-SqlColumns -server localhost -database master -objectId $oid
 #>
     [CmdletBinding()]Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
             [Alias('serverName','sqlServer','server')]
             [string]$serverInstance
-       ,[Parameter(Mandatory=$true)]
+       ,[Parameter(Mandatory)]
             [Alias('database','dbName')]
             [string]$databaseName
-	   ,[Parameter(Mandatory=$true)]
+	   ,[Parameter(Mandatory)]
 			[Alias('object_id','id','oid','table_id','tableid')]   
 	  		[Int32]$objectId
     )

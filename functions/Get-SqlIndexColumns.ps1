@@ -1,15 +1,15 @@
 function Get-SqlIndexColumns {
     [CmdletBinding()]Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory)]
             [Alias('serverName','sqlServer','server')]
             [string]$serverInstance
-       ,[Parameter(Mandatory=$true)]
+       ,[Parameter(Mandatory)]
             [Alias('database','dbName')]
             [string]$databaseName
-	   ,[Parameter(Mandatory=$true)]
+	   ,[Parameter(Mandatory)]
 			[Alias('object_id','oid','table_id','tableid')]   
 	  		[Int32]$objectId
-       ,[Parameter(Mandatory=$true)]
+       ,[Parameter(Mandatory)]
 			[Alias('index_id','idxId')]   
             [Int32]$indexId
     )

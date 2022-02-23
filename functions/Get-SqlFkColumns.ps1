@@ -1,12 +1,12 @@
 function Get-SqlFkColumns {
         [CmdletBinding()]Param(
-            [Parameter(Mandatory=$true)]
+            [Parameter(Mandatory)]
                 [Alias('serverName','sqlServer','server')]
                 [string]$serverInstance
-           ,[Parameter(Mandatory=$true)]
+           ,[Parameter(Mandatory)]
                 [Alias('database','dbName')]
                 [string]$databaseName
-           ,[Parameter(Mandatory=$true)]
+           ,[Parameter(Mandatory)]
                 [Alias('foreign_key_id','fk_id','id','foreignKey_id','foreignKeyId')]   
                 [Int32]$fkId
         )

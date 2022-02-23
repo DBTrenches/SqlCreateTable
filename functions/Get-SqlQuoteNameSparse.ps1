@@ -15,7 +15,7 @@ function Get-SqlQuoteNameSparse {
     [cmdletbinding()]Param(
         [parameter(
             Position=0,
-            Mandatory=$true,
+            Mandatory,
             ValueFromPipeline=$true,
             ValueFromPipelineByPropertyName=$true)]
             [Alias('word')]
