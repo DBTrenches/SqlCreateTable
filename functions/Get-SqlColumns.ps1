@@ -106,6 +106,7 @@ select Server_Name = cast(serverproperty(N'Servername') as sysname)
 		end
         +iif(convert(sysname,databasepropertyex(db_name(),'Collation'))<>isnull(c.collation_name, N'') 
                 and c.user_type_id in (165,167,173,175,231,239) 
+				and c.collation_name is not null
             ,' collate '+isnull(c.collation_name, N'')
             ,'')
         +iif(c.is_sparse=1,' sparse','')
