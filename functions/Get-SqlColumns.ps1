@@ -20,7 +20,7 @@ function Get-SqlColumns {
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -32,8 +32,8 @@ function Get-SqlColumns {
 
 #region query_prepare
 	$connStr = @{
-		ServerInstance = $serverInstance
-		Database       = $databaseName
+		SqlInstance = $serverInstance
+		Database    = $databaseName
 	}
 	
 	$sql_getColumns = @"
@@ -141,7 +141,7 @@ where t.[object_id] = $objectId;
 #endregion
 
 #region execute_return
-	(Invoke-Sqlcmd @connStr -Query $sql_getColumns) `
+	(Invoke-DbaQuery @connStr -Query $sql_getColumns) `
 	| ForEach-Object { 
 		[PSCustomObject] @{
 			Server_Name              = $PSItem.Server_Name

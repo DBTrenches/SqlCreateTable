@@ -68,7 +68,7 @@ function Get-SqlCreateTable {
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -92,7 +92,7 @@ function Get-SqlCreateTable {
 #region collections
 
     $connStr = @{
-        ServerInstance = $serverInstance
+        SqlInstance = $serverInstance
         DatabaseName   = $databaseName
     }
 

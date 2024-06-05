@@ -1,7 +1,7 @@
 function Get-SqlFkColumns {
         [CmdletBinding()]Param(
             [Parameter(Mandatory=$true)]
-                [Alias('serverName','sqlServer','server')]
+                [Alias('serverName','sqlServer','server','sqlInstance')]
                 [string]$serverInstance
            ,[Parameter(Mandatory=$true)]
                 [Alias('database','dbName')]
@@ -13,8 +13,8 @@ function Get-SqlFkColumns {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     $sql_GetFkCol = @"
@@ -36,7 +36,7 @@ where fkc.constraint_object_id = $fkId;
 
 #region execute_return
 
-    (Invoke-Sqlcmd @connStr -Query $sql_GetFkCol) `
+    (Invoke-DbaQuery @connStr -Query $sql_GetFkCol) `
     | ForEach-Object {
         [PSCustomObject] @{
             fk_id              = $PSItem.fk_id

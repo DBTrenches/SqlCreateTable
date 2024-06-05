@@ -1,7 +1,7 @@
 function Get-SqlForeignKeys {
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -13,8 +13,8 @@ function Get-SqlForeignKeys {
 
 #region query_prepare
 	$connStr = @{
-		ServerInstance = $serverInstance
-		Database       = $databaseName
+		SqlInstance = $serverInstance
+		Database    = $databaseName
 	}
 
     $sql_GetFk = @"
@@ -42,7 +42,7 @@ where fk.parent_object_id = $objectId;
 
 #region execute_return
 
-    $fks = Invoke-Sqlcmd @connStr -Query $sql_GetFk
+    $fks = Invoke-DbaQuery @connStr -Query $sql_GetFk
 
     $fks | ForEach-Object {
         $fkId = $PSItem.fk_id

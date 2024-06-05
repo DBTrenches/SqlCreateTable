@@ -1,7 +1,7 @@
 function Get-SqlChecks {
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -13,8 +13,8 @@ function Get-SqlChecks {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     $sql_GetChecks = @"
@@ -37,7 +37,7 @@ where cc.parent_object_id = $objectId;
 #endregion
 
 #region execute_return
-    $checks = Invoke-Sqlcmd @connStr -Query $sql_GetChecks
+    $checks = Invoke-DbaQuery @connStr -Query $sql_GetChecks
 
     $checks | ForEach-Object {
         [PSCustomObject] @{

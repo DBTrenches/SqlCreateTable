@@ -12,7 +12,7 @@ function Get-SqlTable {
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -27,8 +27,8 @@ function Get-SqlTable {
     )
 
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     if($objectId -eq [Int32]$null) {
@@ -98,7 +98,7 @@ outer apply (
 where t.[object_id] = $objectId;
 "@
 
-    Invoke-Sqlcmd @connStr -Query $sql_getTable | ForEach-Object {
+    Invoke-DbaQuery @connStr -Query $sql_getTable | ForEach-Object {
         $out_schema = (Get-SqlQuoteNameSparse -text $PSItem.schema_name).text
         $out_table  = (Get-SqlQuoteNameSparse -text $PSItem.table_name).text
         [PSCustomObject] @{

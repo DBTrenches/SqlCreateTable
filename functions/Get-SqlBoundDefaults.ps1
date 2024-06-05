@@ -1,7 +1,7 @@
 function Get-SqlBoundDefaults {
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -13,8 +13,8 @@ function Get-SqlBoundDefaults {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     $sql_GetDefaults=@"
@@ -39,7 +39,7 @@ where t.[object_id] = $objectId;
 
 #endregion
 
-    (Invoke-Sqlcmd @connStr -Query $sql_GetDefaults) `
+    (Invoke-DbaQuery @connStr -Query $sql_GetDefaults) `
     | ForEach-Object { 
         [PSCustomObject] @{
             Server_Name        = $PSItem.Server_Name

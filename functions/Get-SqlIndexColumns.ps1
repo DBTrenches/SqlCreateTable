@@ -1,7 +1,7 @@
 function Get-SqlIndexColumns {
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -16,8 +16,8 @@ function Get-SqlIndexColumns {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     $sql_GetIndexColumns = @"
@@ -40,7 +40,7 @@ where ic.[object_id] = $objectId
 #endregion
 
 #region execute_return
-    $idxCols = Invoke-Sqlcmd @connStr -Query $sql_GetIndexColumns
+    $idxCols = Invoke-DbaQuery @connStr -Query $sql_GetIndexColumns
 
     $idxCols | ForEach-Object { 
         $KeyColumnName = (Get-SqlQuoteNameSparse -text $PSItem.column_name).text
