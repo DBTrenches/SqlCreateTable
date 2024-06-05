@@ -4,6 +4,7 @@
 @{
     RootModule        = 'SqlCreateTable.psm1'
     ModuleVersion     = '0.1.0'
+    Guid              = 'a4797708-59f5-4489-ad32-d27a3faea894'
     Author            = 'Peter Vandivier'
     RequiredModules   = @(
         @{
