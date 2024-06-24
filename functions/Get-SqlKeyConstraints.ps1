@@ -1,12 +1,12 @@
 function Get-SqlKeyConstraints {
 <#
 .EXAMPLE
-    $id = (Invoke-SqlCmd -server "." -database "tempdb" -Query "select object_id('F394243C.Parent') as id").id
+    $id = (Invoke-DbaQuery -server "." -database "tempdb" -Query "select object_id('F394243C.Parent') as id").id
     Get-SqlKeyConstraints -server "." -database "tempdb" -tableId $id
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -18,8 +18,8 @@ function Get-SqlKeyConstraints {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
     
     $sql_GetUKeys = @"
@@ -46,7 +46,7 @@ where kc.parent_object_id = $tableId;
 #endregion
 
 #region execute_return
-    $keys = Invoke-Sqlcmd @connStr -Query $sql_GetUKeys
+    $keys = Invoke-DbaQuery @connStr -Query $sql_GetUKeys
     
     $keys | ForEach-Object {
         $indexID = $PSItem.unique_index_id

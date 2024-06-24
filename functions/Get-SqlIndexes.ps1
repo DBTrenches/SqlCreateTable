@@ -1,7 +1,7 @@
 function Get-SqlIndexes {
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -13,8 +13,8 @@ function Get-SqlIndexes {
 
 #region query_prepare
     $connStr = @{
-        ServerInstance = $serverInstance
-        Database       = $databaseName
+        SqlInstance = $serverInstance
+        Database    = $databaseName
     }
 
     $sql_GetIndexes = @"
@@ -44,7 +44,7 @@ where i.index_id > 0
 #endregion
 
 #region execute_return
-    $idxs = Invoke-Sqlcmd @connStr -Query $sql_GetIndexes
+    $idxs = Invoke-DbaQuery @connStr -Query $sql_GetIndexes
 
     $idxs | ForEach-Object {
         $idxId = $PSItem.index_id

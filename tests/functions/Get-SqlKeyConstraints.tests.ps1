@@ -1,4 +1,4 @@
-$id = (Invoke-SqlCmd -server "." -database "tempdb" -Query "select object_id('F394243C.Parent') as id").id
+$id = (Invoke-DbaQuery -server "." -database "tempdb" -Query "select object_id('F394243C.Parent') as id").id
 $keys = Get-SqlKeyConstraints -server "." -database "tempdb" -tableId $id
 $pk = $keys| Where-Object key_type -eq "PK"
 $ak = $keys| Where-Object key_type -eq "UQ"

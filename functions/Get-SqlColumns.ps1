@@ -20,7 +20,7 @@ function Get-SqlColumns {
 #>
     [CmdletBinding()]Param(
         [Parameter(Mandatory=$true)]
-            [Alias('serverName','sqlServer','server')]
+            [Alias('serverName','sqlServer','server','sqlInstance')]
             [string]$serverInstance
        ,[Parameter(Mandatory=$true)]
             [Alias('database','dbName')]
@@ -32,8 +32,8 @@ function Get-SqlColumns {
 
 #region query_prepare
 	$connStr = @{
-		ServerInstance = $serverInstance
-		Database       = $databaseName
+		SqlInstance = $serverInstance
+		Database    = $databaseName
 	}
 	
 	$sql_getColumns = @"
@@ -104,9 +104,10 @@ select Server_Name = cast(serverproperty(N'Servername') as sysname)
 				then '('+convert(varchar,c.scale)+')' 
 			else '' 
 		end
-        +iif(convert(sysname,databasepropertyex(db_name(),'Collation'))<>isnull(c.collation_name, N'') 
+        +iif(convert(sysname,databasepropertyex(db_name(),'Collation'))<>c.collation_name
                 and c.user_type_id in (165,167,173,175,231,239) 
-            ,' collate '+isnull(c.collation_name, N'')
+				and c.collation_name is not null
+            ,' collate '+c.collation_name
             ,'')
         +iif(c.is_sparse=1,' sparse','')
         +iif(c.is_identity=0,''
@@ -141,7 +142,7 @@ where t.[object_id] = $objectId;
 #endregion
 
 #region execute_return
-	(Invoke-Sqlcmd @connStr -Query $sql_getColumns) `
+	(Invoke-DbaQuery @connStr -Query $sql_getColumns) `
 	| ForEach-Object { 
 		[PSCustomObject] @{
 			Server_Name              = $PSItem.Server_Name
